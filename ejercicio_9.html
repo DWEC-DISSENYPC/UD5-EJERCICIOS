@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de Errores de Imagen</title>
+    
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f7f7f7;
+            font-family: ui-sans-serif, system-ui;
+        }
+        .contenedor {
+            border: 2px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .imagen {
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+    </style>
+
+    <script>
+        /**
+         * Función que se ejecuta si la imagen falla al cargar.
+         * @param {HTMLImageElement} elemento - La referencia a la etiqueta <img> que falló.
+         */
+        function manejarError(elemento) {
+            
+            // CORRECCIÓN: Usar el ID correcto "mensaje"
+            let mensaje = document.getElementById("mensaje"); 
+            
+            // Si el elemento P existe, asignamos el texto
+            if (mensaje) {
+                 mensaje.textContent = "AVISO: La imagen original falló al cargar. Activando imagen por defecto.";
+            }
+
+            // 2. Asignar la nueva URL al atributo src del elemento.
+            // ESTA LÍNEA AHORA SE EJECUTA porque el error anterior fue corregido.
+            elemento.src = "sywlx6pow5v91.jpg"; 
+            
+            // 3. Eliminar el evento onerror para evitar bucles infinitos 
+            // si la imagen por defecto también fallara por algún motivo.
+            elemento.onerror = null; 
+            
+            // 4. Actualizar el texto alternativo (alt)
+            elemento.alt = "Imagen por defecto";
+        }
+
+       
+
+    </script>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <!-- Elemento para mostrar el mensaje de error -->
+        <p id="mensaje" class="text-red-600 font-semibold mb-3">
+            
+        </p>
+
+        <!-- 
+            La clave es el atributo onerror.
+            Si el navegador no puede cargar el archivo en 'src', ejecuta la función 'manejarError'.
+        -->
+        <img  class="imagen" 
+             src="imaenNoExiste.jpg" 
+             alt="Imagen Principal"
+             onerror="manejarError(this)"> 
+        
+    </div>
+
+    
+</body>
+</html>

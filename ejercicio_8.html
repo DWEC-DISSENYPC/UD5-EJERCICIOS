@@ -1,17 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rotador de Anuncios Dinámico</title>
+    
+    <!-- En el código real, usarías rutas de imagen válidas. Aquí uso placeholders. -->
+    
+    <style>
+        .imagen {
+            height: 100px;
+            width: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #contenedor-anuncio {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            margin-top: 50px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #texto {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #333;
+            min-height: 50px; /* Asegura que no haya salto al cambiar el texto */
+        }
+    </style>
+
+    <script>
+        // Variables globales (inicializar indice a 0)
+        let intervaloId;
+        let indice = 0; 
+
+        // Los arrays deben tener rutas de imagen reales. Usaremos placeholders aquí.
+        const mensajes = [
+            "Aaaaaaaa aaaaaaaaa aaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaa aaaaaaaaaa",
+            "Bbbbbb bbbbbbbbbb bbbbbbb bbbbbb bbbbbbbbb bbb bbbbb bbbbbbbbb bbbbbbbbbbbbbbbbbb bbbbb"
+        ];
+        // En el código real, usa tus archivos locales. Aquí uso imágenes de placeholder.
+        const imagenes = [
+            "182985-1.jpg",
+            "sywlx6pow5v91.jpg"
+        ];
+
+        // 1. FUNCIÓN QUE HACE SÓLO UNA ACTUALIZACIÓN
+        function cambiarAnuncio() {
+            // Se usa const, es buena práctica cuando el valor no cambia
+            const textoElemento = document.getElementById("texto");
+            const imagenElemento = document.getElementById("imagen");
+
+            if (!textoElemento || !imagenElemento) {
+                // Si los elementos no están listos, detenemos el intervalo para evitar errores
+                clearInterval(intervaloId); 
+                return;
+            }
+
+            // 1. Asignar el contenido de los arrays usando el índice actual
+            textoElemento.textContent = mensajes[indice]; // CORRECCIÓN: Usar 'mensajes'
+            imagenElemento.src = imagenes[indice];
+
+            // 2. Incrementar el índice y usar MÓDULO (%) para que dé la vuelta al llegar al final
+            // Ejemplo: (1 + 1) % 2 = 0. Vuelve al inicio.
+            indice = (indice + 1) % mensajes.length; 
+        }
+
+        // 2. FUNCIÓN DE INICIALIZACIÓN
+        function iniciarRotador() {
+            // Ejecutamos la función una vez de inmediato para que la página no empiece vacía
+            cambiarAnuncio(); 
+
+            // Programamos la función para que se repita cada 3 segundos (3000 ms)
+            intervaloId = setInterval(cambiarAnuncio, 3000);
+        }
+        
+        // 3. EVENTO DE CARGA: Iniciar el rotador solo cuando el HTML esté listo
+        document.addEventListener('DOMContentLoaded', iniciarRotador);
+
+    </script>
 </head>
 <body>
-
-<div id = "anuncio">
-
     
-
-</div>
+    <div id="contenedor-anuncio">
+        <h2>Anuncio Rotativo</h2>
+        <p id="texto">Cargando anuncio...</p>
+        <!-- Elemento de la imagen con el ID y la clase CSS -->
+        <img id="imagen" class="imagen" alt="Anuncio Dinámico"> 
+    </div>
     
 </body>
 </html>
+
+
+

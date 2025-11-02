@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura de Texto Seleccionado</title>
+    
+    <style>
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f7f7f7;
+            font-family: ui-sans-serif, system-ui;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('mouseup', mostrarSeleccion);
+        /*document.addEventListener('keyup', mostrarSeleccion);*/
+
+        /**
+         * Función que captura el texto seleccionado en el documento y lo muestra en el textarea.
+         * Usa value, selectionStart y selectionEnd para manipular el contenido.
+         */
+        function mostrarSeleccion() {
+
+            let textoSelecionable = document.getElementById("textoSelecionable")
+            // 1. Obtener el objeto de selección del documento
+            const seleccion = window.getSelection();
+            
+            // 2. Obtener el texto seleccionado como string
+            const texto = seleccion.toString().trim();
+
+            // 3. Obtener el elemento textarea y el elemento de información
+            const textarea = document.getElementById('textoSeleccionado');
+            const infoPaso = document.getElementById('infoPaso');
+
+            if (textarea) {
+                if (texto.length > 0) {
+                    // 4. Mostrar el texto capturado usando la propiedad 'value'
+                    textarea.value = texto;
+                    
+                    // Opcional: Usamos selectionStart y selectionEnd para posicionar el cursor 
+                    // al inicio o al final del texto capturado.
+                    textarea.selectionStart = 0; // Inicia la selección en la posición 0
+                    textarea.selectionEnd = texto.length; // Termina la selección al final
+
+                    infoPaso.textContent = `Texto capturado: ${texto.length} caracteres.`;
+                    
+                } else if (seleccion.isCollapsed) {
+                    // Si no hay texto seleccionado (solo un clic), limpiamos el estado.
+                    infoPaso.textContent = 'Selecciona texto en la página.';
+                }
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+
+    <div >
+        <h1 >Visualizador de Selección</h1>
+        
+        <p >
+            Selecciona cualquier parte de este texto, incluyendo las áreas del `textarea`, y el texto seleccionado se copiará al área inferior.
+        </p>
+        <p >
+            ¡Intenta seleccionar desde aquí! El evento se dispara al soltar el clic del ratón (`mouseup`) o al soltar una tecla de navegación (`keyup`).
+        </p>
+
+        <!-- Área de salida para mostrar el texto seleccionado -->
+        <div >
+            <label for="textoSeleccionado" >Texto Seleccionado:</label>
+        </div>
+        
+        <textarea id="textoSeleccionado" 
+                  rows="5" 
+                  placeholder="Aquí aparecerá el texto que selecciones..."
+                  readonly></textarea>
+
+        <p id="infoPaso" class="text-sm mt-3 text-gray-500 font-mono">
+            Esperando selección...
+        </p>
+    </div>
+
+    
+</body>
+</html>

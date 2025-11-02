@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="#" id ="formulario" metodo = "post">
+
+        <label for="numero">Inserta un numero</label>
+        <input type="text" id = "numero" name = "numero" required>
+        <button type = "submit">Comprobar</button>
+    </form>
+
+    <p id ="mensaje"></p>
+
+    <script>
+
+        const formulario = document.getElementById("formulario");
+        const mensaje = document.getElementById("mensaje");
+
+        formulario.addEventListener('submit', comprobaSiNumero);
+
+        function comprobaSiNumero() {
+            event.preventDefault(); // cancela el envio al servidor manteniendo el texto en pantalla
+
+            const texto = document.getElementById("numero").value;
+
+            const numero = Number(texto);
+            if (!isNaN(numero)) mensaje.textContent = `El ${numero} es un numero`;
+            else mensaje.textContent = `El ${texto} no es un numero`;
+
+        }
+
+    </script>
+
+</body>
+</html>

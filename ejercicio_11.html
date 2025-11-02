@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+</head>
+<body>
+
+    <label for ="imagenes"> Selecciona una imagen </label>
+    <select name="imagen-selecionada" id="imagenes">
+
+        <option value="sywlx6pow5v91.jpg" selected>Goku 1</option>
+        <option value="Sistema-solar.png">Sistema Solar</option>
+        <option value="182985-1.jpg">Goku 2</option>
+
+    </select>
+
+    <img id = "imagen" alt = "imagen seleccionada">
+
+    <script>
+
+        const imagen_selecionada = document.getElementById("imagenes");
+        imagen_selecionada.addEventListener('change', cambiarImagen);
+
+        function cambiarImagen() {
+            let imagen = document.getElementById("imagen");
+
+            imagen.src = imagen_selecionada.value;
+
+
+        }
+
+    </script>
+    
+</body>
+</html>
