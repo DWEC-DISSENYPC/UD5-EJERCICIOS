@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Encriptación Simple (Cifrado César con Desplazamiento +5)</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        textarea { margin-bottom: 20px; padding: 10px; width: 45%; height: 150px; }
+        .contenedor { display: flex; justify-content: space-between; }
+    </style>
+
+    <script>
+        // Función principal que se ejecuta al pulsar y soltar una tecla
+        function encriptarMensaje() {
+            const originalArea = document.getElementById('textoOriginal');
+            const encriptadoArea = document.getElementById('textoEncriptado');
+            
+            // 1. Obtener el texto completo del cuadro original
+            const textoEntrada = originalArea.value;
+            let textoSalida = "";
+
+            // 2. Iterar sobre cada carácter del mensaje de entrada
+            for (let i = 0; i < textoEntrada.length; i++) {
+                
+                // 3. Obtener el código numérico (ASCII/Unicode) del carácter
+                const codigoOriginal = textoEntrada.charCodeAt(i);
+                
+                // 4. Aplicar la encriptación: sumar 5
+                const codigoEncriptado = codigoOriginal + 5;
+                
+                // 5. Convertir el nuevo código numérico a un carácter
+                const caracterEncriptado = String.fromCharCode(codigoEncriptado);
+                
+                // 6. Añadir el nuevo carácter al mensaje encriptado
+                textoSalida += caracterEncriptado;
+            }
+
+            // 7. Mostrar el resultado en el segundo cuadro de texto
+            encriptadoArea.value = textoSalida;
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Cifrado Simple (+5 al código de tecla)</h1>
+
+    <div class="contenedor">
+        <div>
+            <h2>Mensaje Original</h2>
+            <textarea id="textoOriginal" onkeyup="encriptarMensaje()"></textarea>
+        </div>
+        
+        <div>
+            <h2>Mensaje Encriptado</h2>
+            <textarea id="textoEncriptado" readonly></textarea>
+        </div>
+    </div>
+
+    
+</body>
+</html>

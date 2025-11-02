@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #contenedor {
+            display: flex; /* Habilita el modo Flexbox */
+                width: 100%; /* Ocupa todo el ancho del body */
+            /* Asegura que si no caben, se envuelvan */
+            flex-wrap: wrap; 
+        }
+        .columna {
+            /* CLAVE: Cada columna ocupa un tercio del ancho disponible */
+            flex-basis: 33.33%; 
+        
+            /* Opcional: Asegura que todas las columnas tengan la misma altura */
+            flex-grow: 1; 
+        
+            padding: 10px;
+            box-sizing: border-box; /* Incluye padding en el 33.33% */
+        }
+    </style>
+
+    <script>
+
+        function ocultarParrafo(este) {
+           // let idEvento = este.id;
+            let elementoAOcultar = este.nextElementSibling; /*captura el siguiente hermano*/
+            
+            let estado = window.getComputedStyle(elementoAOcultar).display; /* captura el valor de la propiedad diplay*/
+
+            if (estado === "none") elementoAOcultar.style.display="block";
+
+            else elementoAOcultar.style.display="none";
+
+        }
+
+    </script>
+  </head>
+  <body>
+    <h1>Periodico</h1>
+    <div id="contenedor">
+      <div class="columna">
+        <h3 class="titulo" id = "titulo1" onclick="ocultarParrafo(this)">Noticia 1</h3>
+        <p id = "text1">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet,
+          accusantium? Tempore suscipit itaque, dolore delectus placeat quos
+          illum, libero dolores, assumenda vitae minus hic sed reiciendis
+          facilis! Blanditiis, rerum. Magnam.
+        </p>
+      </div>
+      <div class="columna">
+        <h3 class="titulo" id = "titulo2" onclick="ocultarParrafo(this)">Noticia 2</h3>
+        <p id = "text2">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet,
+          accusantium? Tempore suscipit itaque, dolore delectus placeat quos
+          illum, libero dolores, assumenda vitae minus hic sed reiciendis
+          facilis! Blanditiis, rerum. Magnam.
+        </p>
+      </div>
+      <div class="columna">
+        <h3 class="titulo" id = "titulo3" onclick="ocultarParrafo(this)">Noticia 3</h3>
+        <p id = "text3">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet,
+          accusantium? Tempore suscipit itaque, dolore delectus placeat quos
+          illum, libero dolores, assumenda vitae minus hic sed reiciendis
+          facilis! Blanditiis, rerum. Magnam.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

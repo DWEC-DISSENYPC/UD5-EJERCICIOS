@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+      img {
+        height: 20vw;
+        width: 20vw;
+      }
+    </style>
+
+    <script>
+
+        function aumentarTamanyo(){
+
+            let imagen = document.getElementById("imagen");
+
+            imagen.style.height = "30vw";
+
+            imagen.style.width = "30vw";
+        }
+
+        function reducirTamanyo(){
+
+            let imagen = document.getElementById("imagen");
+
+            imagen.style.height = "20vw";
+
+            imagen.style.width = "20vw";
+        }
+
+    </script>
+    
+ <img
+      id="imagen"
+      src="182985-1.jpg"
+      alt="Son Goku foto 1"
+      ondblclick="aumentarTamanyo()" onclick="reducirTamanyo()"
+    />
+
+</body>
+</html>

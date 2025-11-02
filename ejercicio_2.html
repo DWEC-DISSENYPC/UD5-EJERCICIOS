@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>  h1{ color:red;}  </style>
+
+    <script>
+
+        function cambiarColor() {
+            let texto = document.getElementById("texto");
+
+            texto.style.color = "blue";
+
+        }
+
+         function restaurarColor() {
+            let texto = document.getElementById("texto");
+
+            texto.style.color = "red";
+
+        }
+
+
+    </script>
+</head>
+<body>
+    
+<div id = "texto" onmouseover="cambiarColor()" onmouseout="restaurarColor()">
+
+   Texto a cambiar de color
+
+</div>
+
+</body>
+</html>

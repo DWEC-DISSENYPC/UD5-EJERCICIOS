@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        // --- 1. FUNCIÓN PRINCIPAL PARA CLIC IZQUIERDO Y CENTRAL ---
+        function manejarClick(event) {
+            let elemento = document.getElementById("texto");
+
+            // Capturamos el tamaño actual para el cálculo relativo
+            let tamanyoActualPx = parseFloat(window.getComputedStyle(elemento).fontSize);
+
+            // Botón Izquierdo (event.button === 0)
+            if (event.button === 0) {
+                // Aumentar tamaño en 5px
+                const nuevoTamano = tamanyoActualPx + 5;
+                elemento.style.fontSize = nuevoTamano + 'px';
+            } 
+            
+            // Botón Central (event.button === 1)
+            else if (event.button === 1) {
+                // Cambiar color de forma aleatoria
+                const colorAleatorio = '#' + Math.floor(Math.random()*16777215).toString(16);
+                elemento.style.color = colorAleatorio;
+            }else if (event.button == 2) {
+
+                const nuevoTamano = tamanyoActualPx - 5;
+                elemento.style.fontSize = nuevoTamano + 'px';
+
+            }
+            // Los botones izquierdo y central no necesitan prevenir el evento
+        }
+
+    </script>
+</head>
+<body>
+    
+<h1 id="texto" onmousedown="manejarClick(event)">Texto a cambiar</h1>
+
+</body>
+</html>

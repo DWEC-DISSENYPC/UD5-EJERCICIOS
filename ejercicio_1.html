@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        height: 20vw;
+        width: 20vw;
+      }
+    </style>
+
+    <script>
+      function cambiarImagen() {
+        // 1. Capturar el objeto del DOM con la clase "imagen"
+        //    Usamos querySelector para obtener el primer elemento que coincida con la clase.
+        var miImagen = document.getElementById("imagen");
+
+        // Comprobación de seguridad: Asegúrate de que el elemento exista antes de modificarlo
+        if (miImagen) {
+          // 2. Cambiar la ruta (src) de la imagen
+          miImagen.src = "sywlx6pow5v91.jpg";
+
+          // Opcional: Puedes cambiar el texto alternativo
+          miImagen.alt = "Nueva descripción de la imagen";
+        } else {
+          console.error(
+            "No se encontró ningún elemento con la clase 'imagen'."
+          );
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <img
+      id="imagen"
+      src="182985-1.jpg"
+      alt="Son Goku foto 1"
+      onclick="cambiarImagen()"
+    />
+    
+  </body>
+</html>
