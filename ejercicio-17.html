@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        input {
+
+            background-color: blue;
+            color: white;
+
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <form action="">
+
+        <label for="nombre">Nombre</label>
+        <input type="text" onfocus="tieneFoco(this)" onblur="noTieneFoco(this)" name="nombre">
+        <label for="apellidos" >Apellidos</label>
+        <input type="text" onfocus="tieneFoco(this)" onblur="noTieneFoco(this)" name="apellidos">
+        <label for="edad">Edad</label>
+        <input type="number" onfocus="tieneFoco(this)" onblur="noTieneFoco(this)" name = "edad">
+
+    </form>
+
+    <script>
+        
+        function tieneFoco(elemento) {
+
+            elemento.style.color="blue";
+            elemento.style.backgroundColor="white";
+
+        }
+
+        function noTieneFoco(elemento) {
+
+            elemento.style.color="white";
+            elemento.style.backgroundColor="blue";
+
+        }
+
+    </script>
+    
+</body>
+</html>

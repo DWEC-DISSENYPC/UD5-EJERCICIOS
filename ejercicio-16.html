@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fondo Aleatorio al Scroll</title>
+
+    <style>
+      /* CSS MÍNIMO PARA FORZAR LA BARRA DE DESPLAZAMIENTO Y VISUALIZACIÓN */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        /* Altura forzada para que aparezca la barra de scroll */
+        min-height: 250vh;
+        transition: background-color 0.1s ease-out; /* Pequeña transición para que el cambio no sea tan abrupto */
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+      p {
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>¡Desplaza para cambiar el fondo!</h1>
+
+      
+    
+
+    <script>
+      /**
+       * Genera un color hexadecimal aleatorio (ej: #a3b5f0).
+       * @returns {string} El código de color hexadecimal.
+       */
+      function generarColorHex() {
+        // Genera un número aleatorio y lo convierte a base 16 (hexadecimal)
+        var color = Math.floor(Math.random() * 16777215).toString(16);
+
+        // Asegura que siempre tenga 6 dígitos, rellenando con ceros al inicio
+        while (color.length < 6) {
+          color = "0" + color;
+        }
+        return "#" + color;
+      }
+
+      /**
+       * Cambia el color de fondo del body.
+       */
+      function cambiarColor() {
+        var colorAleatorio = generarColorHex();
+        document.body.style.backgroundColor = colorAleatorio;
+      }
+
+      // Asignamos la función al evento 'scroll' de la ventana
+      window.addEventListener("scroll", cambiarColor);
+    </script>
+  </body>
+</html>
