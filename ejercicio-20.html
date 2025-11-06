@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <script>
+
+        function getCookie(nomCookie){
+            var valCookie = document.cookie.split(";");
+            for (let i = 0; i < valCookie.length; i++){
+                var nom = valCookie[i].substr(0,valCookie[i].indexOf("="));
+                var val = valCookie[i].substr(valCookie[i].indexOf("=")+1);
+                if(nomCookie.trim() == nom.trim()) {
+                    alert("Bien venido " + val );
+                }
+            }
+        }
+
+        function setCookie(nombre,valor,dias){
+            var fecha=new Date();
+            fecha.setDate(fecha.getDate() + dias);
+            var expira = "expires=" + fecha.toUTCString();
+            document.cookie = nombre + "=" + valor + ";" + expira + ",path=/";
+        }
+
+        var nombre = 'visitante';
+        var valor = 'Jaime';
+        var dias = 3; 
+        setCookie(nombre, valor, dias);
+        getCookie('visitante');
+    </script>
+  </body>
 </html>

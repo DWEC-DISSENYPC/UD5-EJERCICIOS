@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Color con Cookie</title>
+</head>
+<body>
+
+  <h2>Selecciona un color de fondo:</h2>
+
+  <select id="colorSelect">
+    <option value="">-- Elige un color --</option>
+    <option value="red">Rojo</option>
+    <option value="green">Verde</option>
+    <option value="blue">Azul</option>
+    <option value="yellow">Amarillo</option>
+    <option value="white">Blanco</option>
+    <option value="black">Negro</option>
+  </select>
+
+  <script>
+    // --- Función para crear cookie ---
+    function setCookie(nombre, valor, dias) {
+      var fecha = new Date();
+      fecha.setDate(fecha.getDate() + dias);
+      var expira = "expires=" + fecha.toUTCString();
+      document.cookie = nombre + "=" + valor + ";" + expira + ";path=/";
+    }
+
+    // --- Función para obtener cookie ---
+    function getCookie(nombre) {
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var c = cookies[i].trim();
+        if (c.startsWith(nombre + "=")) {
+          return c.substring(nombre.length + 1);
+        }
+      }
+      return null;
+    }
+
+    // --- Aplicar color guardado si existe ---
+    var colorGuardado = getCookie("colorFondo");
+    if (colorGuardado) {
+      document.body.style.backgroundColor = colorGuardado;
+      document.getElementById("colorSelect").value = colorGuardado;
+    }
+
+    // --- Cuando se cambia el color ---
+    document.getElementById("colorSelect").onchange = function() {
+      var color = this.value;
+      if (color) {
+        document.body.style.backgroundColor = color;
+        setCookie("colorFondo", color, 7); // dura 7 días
+      }
+    };
+  </script>
+
+</body>
+</html>
